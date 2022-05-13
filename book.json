@@ -1,0 +1,93 @@
+{
+    "title": "Junhui Book",
+    "description": "自行、自信、智性",
+    "author": "Junhui Luo",
+    "output.name": "site",
+    "language": "zh-hans",
+    "gitbook": "3.2.3",
+    "styles": {       
+        "website": "./style/website.css"
+    },
+    "structure": {   
+        "readme": "README.md"
+    },
+    "links": {      
+        "sidebar": {
+            "君山": "/"
+        }
+    },
+    "plugins": [   
+        "anchors",
+        "auto-scroll-table", 
+    "chapter-fold", 
+    "expandable-chapters-small",
+    "toggle-chapters",
+        "advanced-emoji",  
+        "code", 
+        "favicon", 
+        "fontsettings",                    
+        "klipse",  
+        "-livereload", 
+        "-lunr", 
+        "pageview-count",
+        "page-toc-button", 
+        "popup", 
+        "sharing-plus",
+        "-sharing", 
+        "splitter", 
+        "-search",
+        "search-pro", 
+        "tbfed-pagefooter",
+        "hide-element"
+    ],
+    "pluginsConfig": {   
+        "hide-element": {
+            "elements": [".gitbook-link"]
+        },
+        "theme-default": {
+            "showLevel": true
+        },
+        "code": {
+            "copyButtons": true
+        },
+        "tbfed-pagefooter": {
+            "copyright": "Copyright © JunShan 2022",
+            "modify_label": "本书发布时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "page-toc-button": {
+            "maxTocDepth": 2,
+            "minTocSize": 2
+        },
+        "sharing": {
+            "douban": false,
+            "facebook": false,
+            "google": false,
+            "hatenaBookmark": false,
+            "instapaper": false,
+            "line": false,
+            "linkedin": false,
+            "messenger": false,
+            "pocket": false,
+            "qq": true,
+            "qzone": true,
+            "stumbleupon": false,
+            "twitter": false,
+            "viber": false,
+            "vk": false,
+            "weibo": true,
+            "whatsapp": false,
+            "all": [
+                "weibo","qq", "qzone", "douban", "facebook","google",
+                              "linkedin","twitter","whatsapp"
+            ]
+        },
+        "anchor-navigation-ex": {
+            "showLevel": true
+        },
+        "favicon":{
+            "shortcut": "",
+            "bookmark": ""
+        }
+    }
+}
