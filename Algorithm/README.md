@@ -1,5 +1,5 @@
-# 记录与文档
+# 算法拾遗
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/luojunhui1/AlgorithmExercise?label=Exercise%20Update&logo=Github)
 
-本仓库为保存一些经常性更新，但是在内容上具有连续性的记录而建立，主要是一些刷题中写过的的代码和笔记，学习笔记等。目前主要内容有已刷完的Leetcode剑指offer题库。不断更新，保持学习。
+算法是数据科学家的基础能力之一，在具体的代码实现上要具备一定的体系和认识，本章不作为重点发展方向，但不能遗忘。

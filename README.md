@@ -1,6 +1,6 @@
-# 记录与文档
+# 君山的书
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/luojunhui1/Book?label=Exercise%20Update&logo=Github)
 
-本仓库为保存一些经常性更新，但是在内容上具有连续性的记录而建立，主要是一些刷题中写过的的代码和笔记，学习笔记等。目前主要内容有已刷完的Leetcode剑指offer题库。不断更新，保持学习。
+原是在github上搭建的博客，但于2022年5月又觉得gitbook的形式更适于我做各种记录，于是将所有文件重新更新到腾讯云服务器上并开始搭建新的博客，本书的几个章节即使未来我研究生阶段发展的几个维度。
 
