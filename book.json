@@ -19,9 +19,9 @@
     "plugins": [   
         "anchors",
         "auto-scroll-table", 
-    "chapter-fold", 
-    "expandable-chapters-small",
-    "toggle-chapters",
+        "chapter-fold", 
+        "expandable-chapters-small",
+        "toggle-chapters",
         "advanced-emoji",  
         "code", 
         "favicon", 
@@ -38,7 +38,9 @@
         "-search",
         "search-pro", 
         "tbfed-pagefooter",
-        "hide-element"
+        "hide-element",
+        "insert-logo",
+        "alerts"
     ],
     "pluginsConfig": {   
         "hide-element": {
@@ -86,8 +88,12 @@
             "showLevel": true
         },
         "favicon":{
-            "shortcut": "",
-            "bookmark": ""
-        }
+            "shortcut": "./logo.png",
+            "bookmark": "./logo.png"
+        },
+        "insert-logo": {
+        "url": "./logo.png",
+        "style": "background: none; max-height: 100px; min-height: 30px"
+      }
     }
 }
