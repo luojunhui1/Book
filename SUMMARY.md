@@ -14,5 +14,5 @@
     * [C专家编程](Notes/C专家编程.md)
     * [Learning-Algebra-Done-Right-3E](Notes/Learning-Algebra-Done-Right-3E.md)
     * [Github使用命令](Notes/Github使用命令.md)
-    * [杂](Notes/Others.md)
+    * [开发经验](Notes/Others.md)
 * [关于我](About/README.md)
