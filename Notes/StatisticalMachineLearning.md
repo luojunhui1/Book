@@ -1,6 +1,4 @@
-RESEARCH DAILY
-
-**build for recording research**
+# 统计学习方法
 
 ## 2021
 
