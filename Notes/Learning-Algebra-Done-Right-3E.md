@@ -1,13 +1,4 @@
----
-title: Linear Algebra Done Right And Videos from 3Blue1Brown
-date: 2021-09-05 17:35:59
-categories:
-- Study
-tags:
-- Algebra
-- Math
-cover: https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture/Windows/20210905175445.jpg
----
+# 线性代数
 
 ## Linear Algebra Done Right
 

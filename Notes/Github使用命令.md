@@ -1,16 +1,4 @@
----
-title: 《Git使用总结 | 工具文》
-date: 2021-09-02 01:35:42
-categories:
-- Study
-tags:
-- Git
-- Tools
-
----
-
-
-
+# github常用命令
 ## 壹 基础命令
 
 `git init` 初始化仓库

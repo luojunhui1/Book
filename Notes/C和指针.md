@@ -1,13 +1,6 @@
----
-title: 《C和指针》
-date: 2020-09-11 01:35:42
-categories:
-- CPlus
-tags:
-- C
-- C++
-cover: https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture/Windows/20200913143633.jpg
----
+# C和指针
+
+
 
 本篇博客主要对自己读《C和指针》一书的过程作记录，不成整体，比较零碎。
 
