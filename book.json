@@ -89,10 +89,10 @@
         },
         "favicon":{
             "shortcut": "https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture/Windows/20220514010952.jpg",
-            "bookmark": "https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture/Windows/20220514010952"
+            "bookmark": "https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture/Windows/20220514010952.jpg"
         },
         "insert-logo": {
-        "url": "https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture/Windows/20220514010952",
+        "url": "https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture/Windows/20220514010952.jpg",
         "style": "background: none; max-height: 100px; min-height: 30px"
       }
     }
