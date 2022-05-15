@@ -337,14 +337,14 @@ for j in range(77):
     road_geo_labels.append(road.iloc[j]["Precinct"])
 
 def map_region(lon, lat, res, st, data_len):
-    ```
+'''    
     @brief 将经纬度映射为区域
     @param lon 经度
     @param lat 纬度
     @param res 返回dataframe数据
     @param st 起始行序号
     @param data_len 行数据长度
-    ```
+'''
     for i in range(st*data_len, (st + 1)*data_len):
         results = []
         temp_point = shapely.geometry.Point(lon.iloc[i], lat.iloc[i])
@@ -355,11 +355,11 @@ def map_region(lon, lat, res, st, data_len):
 
 
 def process_func(lons, lats, res):
-    ```
+'''
     @brief 将经纬度分线程处理
     @param lats 纬度
     @param lons 经度
-    ```
+'''
     thread_list = []
     thread_num = 10
     thread_data_len = [int(lats.shape[0] / thread_num)]*(thread_num - 1)
@@ -370,7 +370,6 @@ def process_func(lons, lats, res):
         thread_list.append(thread)
     for t in thread_list:
         t.join()
-
 
 if __name__ == '__main__':
     id = 0
@@ -390,22 +389,22 @@ if __name__ == '__main__':
 
             chunk['pickup_region'] = pickup_list[:chunk.shape[0]]
             chunk['dropoff_region'] = dropoff_list[:chunk.shape[0]]
-
+    
             chunk['pickup_datetime'] = pd.to_datetime(chunk['pickup_datetime'], format="%m/%d/%Y %I:%M:%S %p")
             chunk = chunk.dropna()
             chunk['pickup_datetime'] = chunk['pickup_datetime'].apply(lambda x: datetime.strftime(x, '%m/%d/%Y %H:00:00'))
-
+    
             chunk['dropoff_datetime'] = pd.to_datetime(chunk['dropoff_datetime'], format="%m/%d/%Y %I:%M:%S %p")
             chunk = chunk.dropna()
             chunk['dropoff_datetime'] = chunk['dropoff_datetime'].apply(lambda x: datetime.strftime(x, '%m/%d/%Y %H:00:00'))
-
+    
             chunk.drop(chunk.index[(chunk['pickup_region'] == '') | (chunk['dropoff_region'] == '')], inplace=True)
-
+    
             id = id + chunkSize
             chunk.to_csv('data/green_taxi/green_trip_chunck_%d' % (id / chunkSize) + '.csv',
                          columns=['pickup_datetime', 'pickup_region', 'dropoff_datetime', 'dropoff_region'])
             print("already prepared data: ", id)
-
+    
         except StopIteration:
             loop = False
             print("Iteration is stopped.")

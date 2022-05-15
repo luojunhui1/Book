@@ -99,6 +99,9 @@
       },
         "flexible-alerts": {
         "style": "flat"
-      }
+      },
+         "mathjax-pro":{
+            "forceSVG": true
+        }
     }
 }
