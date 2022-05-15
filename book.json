@@ -41,7 +41,7 @@
         "hide-element",
         "insert-logo",
         "flexible-alerts",
-        "katex",
+        "mathjax",
         "mermaid-gb3"
     ],
     "pluginsConfig": {   
