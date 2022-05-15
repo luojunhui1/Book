@@ -4,7 +4,7 @@
 * [算法拾遗](Algorithm/README.md)
     * [力扣](Algorithm/leetcode/README.md)
     * [洛谷](Algorithm/luogu/README.md)
-    * [PTA](Algorithm/luogu/README.md)
+    * [PTA](Algorithm/PTA/README.md)
 * [学术漫途](Research/README.md)
     * [每周总结](Research/WeelySummary.md)
 * [项目实战](Project/README.md)

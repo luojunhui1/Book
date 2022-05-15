@@ -40,7 +40,9 @@
         "tbfed-pagefooter",
         "hide-element",
         "insert-logo",
-        "alerts"
+        "flexible-alerts",
+        "katex",
+        "mermaid-gb3"
     ],
     "pluginsConfig": {   
         "hide-element": {
@@ -94,6 +96,9 @@
         "insert-logo": {
         "url": "https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture/Windows/20220514010925.png",
         "style": "background: none; max-height: 100px; min-height: 30px"
+      },
+        "flexible-alerts": {
+        "style": "flat"
       }
     }
 }

@@ -302,3 +302,113 @@ MAILTO=root
 0    *    *    *    *  cd /home/lighthouse/Book & bash book.sh  
 ```
 
+### 使用多进程+多线程处理千万级数据记录
+
+>  [!WARNING]
+
+> 使用时可能会出现内存多次释放的warning提示，疑似为pandas的bug，影响未知
+
+```python
+import numpy as np
+import pandas as pd
+import shapely.geometry
+import shapely.wkt
+import threading
+import multiprocessing
+from datetime import *
+
+loop = True # 循环flag
+chunkSize = 100000 # 每次读取行数
+
+green_taxi = pd.read_csv("data/2014_Green_Taxi_Trip_Data.csv",
+                         encoding='utf-8',
+                         usecols=["pickup_datetime", "Pickup_longitude", "Pickup_latitude", "dropoff_datetime",
+                                  "Dropoff_longitude", "Dropoff_latitude"],
+                         iterator=True) # 读取轨迹数据
+
+road = pd.read_csv("data/nypp.csv", encoding='utf-8') # 读取区域划分数据
+
+road_geos = []
+road_geo_labels = []
+
+# 生成区域划分数据结构，便于后续判断数据点处于哪个区域中
+for j in range(77):
+    road_geos.append(shapely.wkt.loads(road.iloc[j]["the_geom"]))
+    road_geo_labels.append(road.iloc[j]["Precinct"])
+
+def map_region(lon, lat, res, st, data_len):
+    ```
+    @brief 将经纬度映射为区域
+    @param lon 经度
+    @param lat 纬度
+    @param res 返回dataframe数据
+    @param st 起始行序号
+    @param data_len 行数据长度
+    ```
+    for i in range(st*data_len, (st + 1)*data_len):
+        results = []
+        temp_point = shapely.geometry.Point(lon.iloc[i], lat.iloc[i])
+        for j in range(77):
+            if temp_point.within(road_geos[j]):
+                results.append(str(road_geo_labels[j]))
+        res[i] = ','.join(results)
+
+
+def process_func(lons, lats, res):
+    ```
+    @brief 将经纬度分线程处理
+    @param lats 纬度
+    @param lons 经度
+    ```
+    thread_list = []
+    thread_num = 10
+    thread_data_len = [int(lats.shape[0] / thread_num)]*(thread_num - 1)
+    thread_data_len.append(lats.shape[0] - int(lats.shape[0] / thread_num)*(thread_num - 1))
+    for i in range(0, thread_num):
+        thread = threading.Thread(target=map_region, args=[lons, lats, res, i, thread_data_len[i]])
+        thread.start()
+        thread_list.append(thread)
+    for t in thread_list:
+        t.join()
+
+
+if __name__ == '__main__':
+    id = 0
+    pickup_list = multiprocessing.Manager().list([''] * chunkSize)
+    dropoff_list = multiprocessing.Manager().list([''] * chunkSize)
+    while loop:
+        try:
+            chunk = green_taxi.get_chunk(chunkSize)
+            pickup_process = multiprocessing.Process(target=process_func, args=(
+                chunk['Pickup_longitude'], chunk['Pickup_latitude'], pickup_list))
+            dropoff_process = multiprocessing.Process(target=process_func, args=(
+                chunk['Dropoff_longitude'], chunk['Dropoff_latitude'], dropoff_list))
+            pickup_process.start()
+            dropoff_process.start()
+            pickup_process.join()
+            dropoff_process.join()
+
+            chunk['pickup_region'] = pickup_list[:chunk.shape[0]]
+            chunk['dropoff_region'] = dropoff_list[:chunk.shape[0]]
+
+            chunk['pickup_datetime'] = pd.to_datetime(chunk['pickup_datetime'], format="%m/%d/%Y %I:%M:%S %p")
+            chunk = chunk.dropna()
+            chunk['pickup_datetime'] = chunk['pickup_datetime'].apply(lambda x: datetime.strftime(x, '%m/%d/%Y %H:00:00'))
+
+            chunk['dropoff_datetime'] = pd.to_datetime(chunk['dropoff_datetime'], format="%m/%d/%Y %I:%M:%S %p")
+            chunk = chunk.dropna()
+            chunk['dropoff_datetime'] = chunk['dropoff_datetime'].apply(lambda x: datetime.strftime(x, '%m/%d/%Y %H:00:00'))
+
+            chunk.drop(chunk.index[(chunk['pickup_region'] == '') | (chunk['dropoff_region'] == '')], inplace=True)
+
+            id = id + chunkSize
+            chunk.to_csv('data/green_taxi/green_trip_chunck_%d' % (id / chunkSize) + '.csv',
+                         columns=['pickup_datetime', 'pickup_region', 'dropoff_datetime', 'dropoff_region'])
+            print("already prepared data: ", id)
+
+        except StopIteration:
+            loop = False
+            print("Iteration is stopped.")
+
+```
+
