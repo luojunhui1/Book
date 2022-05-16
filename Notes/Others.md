@@ -411,3 +411,52 @@ if __name__ == '__main__':
 
 ```
 
+### 代码的信息简洁性与形式简洁性
+
+在写一个网格区域数据处理工具函数时，遇到了一个两难的决策，在于下列函数中参数`centers`的格式如何确定。从信息简洁的角度出发，`centers`本意描述的是每个区域类别的特征中心，所以这个参数的纬度应为`(label num, feature num)`；但从形式上而言，该函数前面的几个参数`labels`,`data`都是以区域下标作为行序号，从形式上的对齐而言，这里的`centers`的数据纬度应该与前面保持一致，即`(region num, feature num)`。若在以往我必定推荐信息简洁，但现在更加看好形式上的简洁，虽然这样一来在函数参数上的理解多了一道弯，但是对于函数整体的代码形式而言无疑是更美观了，对之后检查代码，方便快速理解也有好处，不过这也需要函数的注释一定要写好。
+
+```python
+def refine_labels(labels, data=None, grid_h = 16, grid_w = 16, centers=None, sse_means=None, sse_stds=None):
+    """
+    refine the region labels according to the region's spatial relations
+    
+    Parameters
+    -----
+    labels : array-like
+        labels of regions    
+    data : array-like, shape: (region num, region features)
+        data of regions  
+    grid_h : integer
+        rows of grid map
+    grid_w : integer
+        cols of grid map
+    centers : array-like, shape: (region num, region features)
+        label centers of every region
+    sse_means : array-like, shape: (region num, region features)
+        label's sse means of every region
+    sse_stds : array-like, shape: (region num, region features)
+        label's sse stds of every region    
+
+    Returns
+    -----
+    refined labels
+    
+    """
+    region_num = grid_h*grid_w
+
+    for i in range(0, region_num):
+        adj_regions = adjacency_regions(i, grid_h, grid_w)
+        if labels[i] in labels[adj_regions]:
+            continue
+        else:
+            min_dis = np.inf
+            min_dis_class = labels[i]
+            for region in adj_regions:
+                cur_dis = np.sum((data[i] - centers[region])**2)
+                if cur_dis < min_dis and abs(cur_dis - sse_means[region]) < 3 * sse_stds[region]:
+                        min_dis_class = labels[region]
+                        min_dis = cur_dis
+            labels[i] = min_dis_class
+    return labels
+```
+
