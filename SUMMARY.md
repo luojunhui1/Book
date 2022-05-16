@@ -12,7 +12,6 @@
     * [统计学习方法](Notes/StatisticalMachineLearning.md)
     * [C和指针](Notes/C和指针.md)
     * [C专家编程](Notes/C专家编程.md)
-    * [Learning-Algebra-Done-Right-3E](Notes/Learning-Algebra-Done-Right-3E.md)
     * [Github使用命令](Notes/Github使用命令.md)
     * [开发经验](Notes/Others.md)
 * [关于我](About/README.md)
