@@ -460,3 +460,61 @@ def refine_labels(labels, data=None, grid_h = 16, grid_w = 16, centers=None, sse
     return labels
 ```
 
+## Windows配置WSL记录（Ubuntu22.04）
+
+### 安装WSL
+
+目前windows10版本已经不支持从powershell使用`wsl install -d "distribution version"`的方式来安装特定版本的linux系统，它会提示你从微软应用商店中下载对应的linux子系统，所以仅需从商店下载即可安装完成；
+
+![](https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture//Windows/202210141248037.png)
+
+## 配置WSL
+
+### 一、更换国内源
+
+基本所有国内linux发行版安装都要做的第一件事，具体参见：https://blog.csdn.net/xiangxianghehe/article/details/122856771，我使用的是我最常使用的中科大源：
+
+```
+deb https://mirrors.ustc.edu.cn/ubuntu/ jammy main restricted universe multivers
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+deb-src https://mirrors.ustc.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+```
+
+### 二、更新常用工具
+
+1. 将apt-get替换为aptitude
+
+   ```bash
+   sudo apt-get install aptitude
+   ```
+
+2. 安装常见的工具
+
+   ```bash
+   sudo aptitude install build-essential wget curl cmake
+   ```
+
+3. 下载并安装zsh及oh-my-zsh，其中有很多坑及细节，基本可以参考：
+
+   https://zhuanlan.zhihu.com/p/514636147
+
+   https://zhuanlan.zhihu.com/p/514636147
+
+   值得一提的是，修改若出现zsh主题字体不适配的问题，可以尝试右键终端窗口修改应用窗口的字体，将其替换为主题适配的字体就可以轻松解决。
+
+4. 修改root密码
+
+   ```bash
+   sudo pwd root
+   ```
+
+5. 安装eigen
+
+   基本参考：https://blog.csdn.net/p942005405/article/details/100653731 即可，但需注意使用apt-install安装下来的eigen文件在`/user/include`文件夹中，可将其对应的Eigen头文件复制到`/user/local/include`中
