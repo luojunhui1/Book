@@ -95,7 +95,7 @@
         },
         "insert-logo": {
         "url": "https://cdn.jsdelivr.net/gh/luojunhui1/BlogPicture//Windows/202210141656655.png",
-        "style": "background: none; max-width: 100px; min-height: 30px"
+        "style": "background: none; max-width: 200px; min-height: 30px"
       },
         "flexible-alerts": {
       "style": "flat"
