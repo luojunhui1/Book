@@ -8,6 +8,7 @@
 * [学术漫途](Research/README.md)
     * [每周总结](Research/WeelySummary.md)
 * [项目实战](Project/README.md)
+    * [北京"京民通"项目](Project/)
 * [记录与方法论](Notes/README.md)
     * [统计学习方法](Notes/StatisticalMachineLearning.md)
     * [C和指针](Notes/C和指针.md)
