@@ -1,5 +1,5 @@
 {
-    "title": "Junhui Book",
+    "title": "JunShan Book",
     "description": "自行、自信、智性",
     "author": "Junhui Luo",
     "output.name": "site",
@@ -42,7 +42,8 @@
         "insert-logo",
         "flexible-alerts",
         "katex",
-        "mermaid-gb3"
+        "mermaid-gb3",
+        "icp"
     ],
     "pluginsConfig": {   
         "hide-element": {
@@ -99,6 +100,10 @@
       },
         "flexible-alerts": {
       "style": "flat"
+    },
+    "icp":{
+        "number": "川公网安备 51012402000753号",
+        "link": "http://www.beian.gov.cn/portal/index.do#"
     }
     }
 }
