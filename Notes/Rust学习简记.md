@@ -119,9 +119,64 @@ str其实是一个不可变的引用，也可以被视作一个切片，这点�
   let user2 = (String::from("someone@example.com"), String::from("someusername123"), true, 1)
   ```
 
-  #### 结构体的“方法”
+#### 结构体的“方法”
 
   实际上与结构体相关的"方法"有两种，一种是与结构体相关的，参数中带有`&self`的，被称为`方法（method）`，而另一种不做用于结构体实例上，被称为“函数”，如结构体的构造函数等，前者通过implement语义来实现方法，使用`.`运算符来调用，而后者可以直接在结构体中实现，使用`::`操作符来调用。
+
+ 
+
+### 枚举和模式匹配
+
+#### 枚举的定义
+
+rust也具有枚举类型`enum`，但是相比于传统C++中的枚举，它有这样两个明显的特点：
+
+- 枚举可以指定的数据类型，如定义IP枚举可以绑定不同的结构体：
+
+  ```rust
+  struct IPv4_struct{
+      // snip
+  }
+  
+  struct IPv6_struct{
+      // snip
+  }
+  
+  enum IP{
+      IPv4: IPv4_struct,
+      IPv6: IPv6_struct
+  }
+  ```
+
+  这样做的好处是为统一层次的枚举型增加了除了语义上，但也在结构上的区分性，这在有些场合是非常适用的；
+
+- rust中有一个常见的枚举`Option<T>`，其包含两种枚举型，分别为`None`和`Some(T)`。这个枚举型的产生是因为rust中限制空置`null`的泛滥的设计思路，当一个值可能为null时，那么它必定要被`Option`类型包装，当我们使用这样一个经过了一层包装的变量时，我们又无法不考虑到它为`null`的情形，这在一定程度上确实抑制了由于`null`值导致程序崩溃的可能。
+
+#### match控制流
+
+rust中的match控制流类似于C++中的`switch case`，但是不同之处在于它使用`,`来分隔不同的分支而且不需要使用`break`来显示退出分支控制流，它使用`other`来替换C++中的关键字`default`，并且它还支持一种类似于`lambda`函数的写法，即：
+
+```rust
+match x {
+            None => None,
+            Some(i) => Some(i + 1),
+        }
+```
+
+这段代码使用i来绑定Some中包含的值，并且在后续使用了这个值。
+
+rust在设计上提供了一个语法糖用于降低只有很少的分支的时候，写`match`分支的复杂，性那就是`if let`语句，如下：
+
+```rust
+let mut count = 0;
+if let Coin::Quarter(state) = coin {
+    println!("State quarter from {:?}!", state);
+} else {
+    count += 1;
+}
+```
+
+当let语句成立时，这段代码就进入`if`后的语句，也可以在后面加上`else`语句，`else`对应着分支中的`other`分支。
 
 ## 实战经验
 
