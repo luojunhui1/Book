@@ -6,7 +6,7 @@
 
 ### 入门指南
 
-rust是一门静态语言，通过toml文件来实现工程的以来控制，官方提供的主要构建工具有rustc和cargo，一般推荐使用cargo来进行项目的构建和依赖控制，rustc的功能还是比较初级，只有编译应该。cargo构建项目会自动给你建一个本地git仓库（当然这其实是可以设置的），主要有以下的常见命令：
+rust是一门静态语言，通过toml文件来实现工程的依赖控制，官方提供的主要构建工具有rustc和cargo，一般推荐使用cargo来进行项目的构建和依赖控制，rustc的功能还是比较初级，只有编译应该。cargo构建项目会自动给你建一个本地git仓库（当然这其实是可以设置的），主要有以下的常见命令：
 
 ```bash
 cargo new "project name"
@@ -165,7 +165,7 @@ match x {
 
 这段代码使用i来绑定Some中包含的值，并且在后续使用了这个值。
 
-rust在设计上提供了一个语法糖用于降低只有很少的分支的时候，写`match`分支的复杂，性那就是`if let`语句，如下：
+rust在设计上提供了一个语法糖用于降低只有很少的分支的时候，写`match`分支的复杂性，那就是`if let`语句，如下：
 
 ```rust
 let mut count = 0;
@@ -178,5 +178,100 @@ if let Coin::Quarter(state) = coin {
 
 当let语句成立时，这段代码就进入`if`后的语句，也可以在后面加上`else`语句，`else`对应着分支中的`other`分支。
 
+除了上面这些match的用法外，还存在`卫语句（Guard）`和`绑定`等用法，前者可以对分支添加一个if的卫语句以确保只有当当前的分支符合某特定条件时才执行后续语句，后者则确保只有当匹配对象的值符合一定条件时才执行后续语句，例子如下：
+
+```rust
+
+let pair = (2, -2);
+println!("Tell me about {:?}", pair);
+match pair {
+    (x, y) if x == y => println!("These are twins"),
+    // ^ `if` 条件部分是一个卫语句
+    (x, y) if x + y == 0 => println!("Antimatter, kaboom!"),
+    (x, _) if x % 2 == 1 => println!("The first one is odd"),
+    _ => println!("No correlation..."),
+}
+
+fn age() -> u32 {
+    15
+}
+
+match age() {
+        0             => println!("I haven't celebrated my first birthday yet"),
+        // 可以直接匹配（`match`） 1 ..= 12，但那样的话孩子会是几岁？
+        // 相反，在 1 ..= 12 分支中绑定匹配值到 `n` 。现在年龄就可以读取了。
+        n @ 1  ..= 12 => println!("I'm a child of age {:?}", n),
+        n @ 13 ..= 19 => println!("I'm a teen of age {:?}", n),
+        // 不符合上面的范围。返回结果。
+        n             => println!("I'm an old person of age {:?}", n),
+    }
+```
+
+### 闭包
+
+rust中提供了类似于lambda表达式的写法，不过在无法自动推导出类型的时候需要指定类型，这种闭包可以被复制给一个`闭包类型`的变量，在后续中也可以使用这个变量执行功能。
+
+```rust
+// 通过闭包和函数分别实现自增。
+// 译注：下面这行是使用函数的实现
+fn  function            (i: i32) -> i32 { i + 1 }
+
+// 闭包是匿名的，这里我们将它们绑定到引用。
+// 类型标注和函数的一样，不过类型标注和使用 `{}` 来围住函数体都是可选的。
+// 这些匿名函数（nameless function）被赋值给合适地命名的变量。
+let closure_annotated = |i: i32| -> i32 { i + 1 };
+let closure_inferred  = |i     |          i + 1  ;
+
+// 译注：将闭包绑定到引用的说法可能不准。
+// 据[语言参考](https://doc.rust-lang.org/beta/reference/types.html#closure-types)
+// 闭包表达式产生的类型就是 “闭包类型”，不属于引用类型，而且确实无法对上面两个
+// `closure_xxx` 变量解引用。
+
+let i = 1;
+// 调用函数和闭包。
+println!("function: {}", function(i));
+println!("closure_annotated: {}", closure_annotated(i));
+println!("closure_inferred: {}", closure_inferred(i));
+
+// 没有参数的闭包，返回一个 `i32` 类型。
+// 返回类型是自动推导的。
+let one = || 1;
+println!("closure returning one: {}", one());
+```
+
+闭包或自动捕获闭包体中所用到的变量，并根据对于变量的捕获类型，自动创建不同类型的闭包类型，捕获的类型有三种，分别为：
+
+- 通过引用：`&T`（可读）
+- 通过可变引用：`&mut T`（可读、可修改）
+- 通过值：`T`（可读、可修改、可消耗）
+
+这三种捕获类型从上至下明显闭包会对变量获取越来越大的控制权,rust会选择闭包中控制权最大的一种捕获类型来表示闭包的类型：
+
+- `Fn`：表示捕获方式为通过引用的闭包
+- `FnMut`：表示捕获方式为通过可变引用的闭包
+- `FnOnce`：表示捕获方式为通过值的闭包
+
+当闭包被定义后，编译器其实创建了一个匿名类型的结构体，用以存储闭包捕获的变量，但是如果闭包作为函数参数，这个结构体的类型就是未知的，这时候需要根据实际情况指明实现的到底是`Fn`\\`FnMut`\\`FnOnce`中的哪一个，如：
+
+```rust
+fn apply<F>(f: F) where
+    F: FnOnce() {
+    f();
+}
+```
+
+当闭包或函数作为输出函数时，由于rus他不允许返回泛型，并且需要在闭包前加入move关键字，这表明对应的闭包的所有捕获都是通过值进行的，否则闭包内获取的只是无效的引用：
+
+```rust
+fn create_fn() -> impl Fn() {
+    let text = "Fn".to_owned();
+
+    move || println!("This is a: {}", text)
+}
+```
+
 ## 实战经验
 
+- 首先，我将学习开源项目https://github.com/Nukesor/pueue，并以此为基础开始熟悉Rust工程；
+
+  
