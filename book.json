@@ -39,8 +39,7 @@
         "insert-logo",
         "flexible-alerts",
         "katex",
-        "mermaid-gb3",
-        "icp"
+        "mermaid-gb3"
     ],
     "pluginsConfig": {   
         "hide-element": {
