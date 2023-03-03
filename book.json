@@ -12,9 +12,6 @@
         "readme": "README.md"
     },
     "links": {      
-        "sidebar": {
-            "君山": "/"
-        }
     },
     "plugins": [   
         "anchors",
@@ -57,7 +54,7 @@
         },
         "tbfed-pagefooter": {
             "copyright": "Copyright © JunShan 2022",
-            "modify_label": "本书发布时间：",
+            "modify_label": "川公网安备 51012402000753号 本书发布时间：",
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },
         "page-toc-button": {
@@ -100,10 +97,6 @@
       },
         "flexible-alerts": {
       "style": "flat"
-    },
-    "icp":{
-        "label": "川公网安备 51012402000753号",
-        "number": ""
     }
     }
 }
