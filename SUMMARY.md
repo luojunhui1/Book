@@ -7,6 +7,7 @@
     * [PTA](Algorithm/PTA/README.md)
 * [学术漫途](Research/README.md)
     * [每周总结](Research/WeeklySummary.md)
+    * [论文阅读](Research/PaperStudy/README.md)
 * [项目实战](Project/README.md)
     * [京民通后端项目开发](Project/JingMingTong.md)
 * [记录与方法论](Notes/README.md)
