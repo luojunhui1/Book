@@ -8,7 +8,9 @@ libraryID: 1
 itemKey: 8FIUYV3D
 
 ---
-2020-Learning from Multiple Cities: A Meta-Learning Approach for Spatial-Temporal Prediction
+# 2020-Learning from Multiple Cities: A Meta-Learning Approach for Spatial-Temporal Prediction
+
+> ⭐⭐ 聚类 流量预测 迁移学习 元学习 CNN LSTM
 
 该工作属于迁移学习领域，解决的是目标城市数据稀少的问题，从少量的数据中难以提取出时空模式，但是可以通过学习其他城市中的时空模式并将其迁移到目标城市中减缓该问题。
 

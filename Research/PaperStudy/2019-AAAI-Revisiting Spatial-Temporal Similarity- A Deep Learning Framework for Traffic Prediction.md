@@ -8,7 +8,9 @@ libraryID: 1
 itemKey: FPSA3HIK
 
 ---
-2019-AAAI-Revisiting Spatial-Temporal Similarity: A Deep Learning Framework for Traffic Prediction
+# 2019-AAAI-Revisiting Spatial-Temporal Similarity: A Deep Learning Framework for Traffic Prediction
+
+>  ⭐⭐⭐  LSTM CNN Attention
 
 区域间的联系不仅在时序上是变化的，在空间上区域间的联系也是异构变化的。区域间的联系包括距离、连通性、层次关系以及针对具体场景的联系，如人群流动的模式相关性、业务分布上的耦合性等等。关系可以通过数值来表达亲疏，也可以通过图、树等数据结构更加显式地表现出关系间的拓扑，层次关系。前者的数值来源于度量方法，或是偏差的度量，也可以是距离的度量、规模差异的度量，后者的构建方式在表达出更多信息的同时，也带来了数据处理方法上的更多的限制。而对于时变的关系，一种方向是在长时间尺度上抽取关系的模式，以求对关系模式的稳定描述，另一种方向是快速学习适应新的关系，以求轻模型、快部暑。前者可以使用如LSTM等有能力处理长序列数据并学习数据模式的模型，亦可以通过强假设（ e.g. 周期性，周期偏移，周期振荡等）+模型的方式，将长序列数据按假设处理为多个子集，处理之后再得到假设之下的模型，假设带来的不仅是模型更加轻量化的可能，也是对输入一输出间的映射的机理的探索；后者可以通过多任务学习……等手段……
 

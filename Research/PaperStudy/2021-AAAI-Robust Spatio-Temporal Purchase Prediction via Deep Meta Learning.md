@@ -8,7 +8,9 @@ libraryID: 1
 itemKey: 3WSX524B
 
 ---
-2021-AAAI-Robust Spatio-Temporal Purchase Prediction via Deep Meta Learning
+# 2021-AAAI-Robust Spatio-Temporal Purchase Prediction via Deep Meta Learning
+
+> ⭐⭐ 摊销网络 差分网络 元学习
 
 # 基于深度元学习的时空购买预测
 

@@ -8,7 +8,9 @@ libraryID: 1
 itemKey: I9UBXA8N
 
 ---
-2019-AAAI-STG2Seq: Spatial-Temporal Graph to Sequence Model for Multi-step Passenger Demand Forecasting
+# 2019-AAAI-STG2Seq: Spatial-Temporal Graph to Sequence Model for Multi-step Passenger Demand Forecasting
+
+> ⭐⭐ GCN 多步预测
 
 论文的贡献主要有两点，第一点是在学习数据时序特征的方法选择上，没有选择传统的基于RNN及其变种的方法，作者认为这样的方法主要有两点缺陷
 

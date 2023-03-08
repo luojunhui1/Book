@@ -7,7 +7,9 @@ version: 5471
 libraryID: 1
 itemKey: BM4XJCLE
 ---
-2020-ICDM-Interpretable Spatiotemporal Deep Learning Model for Traffic Flow Prediction Based on Potential Energy Fields
+# 2020-ICDM-Interpretable Spatiotemporal Deep Learning Model for Traffic Flow Prediction Based on Potential Energy Fields
+
+> ⭐⭐ GAT GRU 交通流量预测
 
 ## 问题定义
 

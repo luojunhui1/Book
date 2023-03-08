@@ -8,7 +8,9 @@ libraryID: 1
 itemKey: 7NHRW8P9
 
 ---
-2021-AAAI-Community-Aware Multi-Task Transportation Demand Prediction
+# 2021-AAAI-Community-Aware Multi-Task Transportation Demand Prediction
+
+> ⭐⭐ 多步预测 出行需求预测 GNN GRU 多任务学习
 
 # 群体×区域多任务多步出行需求预测
 

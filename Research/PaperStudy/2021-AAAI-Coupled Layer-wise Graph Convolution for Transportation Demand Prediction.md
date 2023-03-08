@@ -8,7 +8,9 @@ libraryID: 1
 itemKey: QBZXSL6I
 
 ---
-2021-AAAI-Coupled Layer-wise Graph Convolution for Transportation Demand Prediction
+# 2021-AAAI-Coupled Layer-wise Graph Convolution for Transportation Demand Prediction
+
+> ⭐⭐ 多步预测 出行需求预测 GRU Seq2Seq SVD
 
 该工作最大的亮点在于它的insight：
 

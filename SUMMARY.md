@@ -8,7 +8,7 @@
 * [学术漫途](Research/README.md)
     * [每周总结](Research/WeeklySummary.md)
     * [论文阅读](Research/PaperStudy/README.md)
-      * [2019-AAAI-Revisiting Spatial-Temporal Similarity: A Deep Learning Framework for Traffic Prediction](Research/PaperStudy/2019-AAAI-Revisiting Spatial-Temporal Similarity: A Deep Learning Framework for Traffic Prediction.md)
+      *  [2019-AAAI-Revisiting Spatial-Temporal Similarity- A Deep Learning Framework for Traffic Prediction.md](Research\PaperStudy\2019-AAAI-Revisiting Spatial-Temporal Similarity- A Deep Learning Framework for Traffic Prediction.md) 
       *  [2019-AAAI-Spatiotemporal Multi-Graph Convolution Network for Ride-Hailing Demand Forecasting](Research\PaperStudy\2019-AAAI-Spatiotemporal Multi-Graph Convolution Network for Ride-Hailing Demand Forecasting.md) 
       *  [2019-IJCAI-STG2Seq Spatial-Temporal Graph to Sequence Model for Multi-step Passenger Demand Forecasting](Research\PaperStudy\2019-IJCAI-STG2Seq Spatial-Temporal Graph to Sequence Model for Multi-step Passenger Demand Forecasting.md) 
       *  [2020-ICDM-Interpretable Spatiotemporal Deep Learning Model for Traffic Flow Prediction Based on Potential Energy Fields](Research\PaperStudy\2020-ICDM-Interpretable Spatiotemporal Deep Learning Model for Traffic Flow Prediction Based on Potential Energy Fields.md) 
