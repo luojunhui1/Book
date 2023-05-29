@@ -28,4 +28,5 @@
     * [Github使用命令](Notes/Github使用命令.md)
     * [开发经验](Notes/Others.md)
     * [Rust学习简记](Notes/Rust学习简记.md)
+    *  [PyTorch中GPU的调用原理](Notes\PyTorch中GPU的调用原理.md) 
 * [关于我](About/README.md)
